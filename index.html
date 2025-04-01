@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>The Wheels of Fate</title>
+		<link rel="stylesheet" type="text/css" href="./clippy/build/clippy.css" media="all">
+		<style>
+html {
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: auto;
+	background-image: url(./wallpaper.webp);
+	background-size: cover;
+}
+body {
+	height: 100vh;
+	overflow: auto;
+}
+main {
+	margin: 0 10vw 40px;
+	padding: 150px 70px 500px;
+	background: url(./parchment.png) no-repeat center top;
+	background-size: 100% auto;
+	font-family: morris;
+	font-size: 1.1em;
+	text-align: center;
+}
+
+#chart {
+	width: 100%;
+}
+#cam {
+	opacity: 0;
+	transition: opacity 1s;
+	background: black;
+	width: 300px;
+	min-height: 200px;
+	border: 1px solid grey;
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+@font-face {
+    font-family: "frost-scream";
+    src: url("./frost-scream.otf");
+}
+@font-face {
+    font-family: "morris";
+    src: url("./MorrisRoman-Black.ttf");
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: frost-scream;
+}
+h1 {
+	font-size: 5em;
+	margin-bottom: 0;
+}
+fieldset {
+	text-align: center;
+	border-color: grey;
+}
+#left {
+	width: 49%;
+	float: left;
+	display: inline-block;
+	box-sizing: border-box;
+}
+#right {
+	display: inline-block;
+	width: 49%;
+	float: right;
+	box-sizing: border-box;
+}
+.num {
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+	font-size: 1.5em;
+}
+.num input {
+	font-size: 3em;
+	font-family: frost-scream;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid black;
+	background: none;
+	width: 70%;
+}
+button {
+	cursor: pointer;
+	padding: 20px;
+	font-family: frost-scream;
+	background: none;
+	border-radius: 30px;
+	font-size: 3em;
+	vertical-align: top;
+}
+#load {
+	transition: opacity 1s;
+	position: fixed;
+	z-index: 90;
+	left: 0;
+	top: -10px;
+	width: 100vw;
+	height: 110vh;
+	object-fit: cover;
+}
+#loadbutton {
+    z-index: 200;
+    position: fixed;
+    display: block;
+	left: 45vw;
+	margin-top: 80vh;
+    background: gold;
+}
+#light {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: none;
+	z-index: 999;
+}
+		</style>
+	</head>
+	<body>
+		<img src="/lightning.gif" id="light">
+
+		<img id="load" src="load.gif">
+		<center><button onclick="load()" id="loadbutton">enter</button></center>
+		<!-- <div id="maintop"></div> -->
+		<main>
+		<h1>The Wheels of Fate</h1>
+		<p>
+Welcome traveler! You have stumbled upon the wheels of fate, the automatic dice rolling tool. Load the cartirages with your corresponding dice, put how many dice you'd like to roll in the spots below,
+see your distribution of odds, and hit the Roll button to watch your roll!
+		</p>
+		<div id="chart"></div>
+		<br>
+		<b><span id="avg"></span></b>
+		<br>
+		<fieldset>
+			<legend>Dice Parameters</legend>
+			<!-- <button style="pointer-events: none;visibility: hidden;">Roll!</button> -->
+			<div class="num"><label><input type="number" min=0 max=4 step=1 placeholder=0 id="d20" onchange="playchange(this)" oninput="convolve(this)"><br>D20</label></div>
+			<div class="num"><label><input type="number" min=0 max=4 step=1 placeholder=0 id="d12" onchange="playchange(this)" oninput="convolve(this)"><br>D12</label></div>
+			<div class="num"><label><input type="number" min=0 max=4 step=1 placeholder=0 id="d10" onchange="playchange(this)" oninput="convolve(this)"><br>D10</label></div>
+			<div class="num"><label><input type="number" min=0 max=4 step=1 placeholder=0 id="d8" onchange="playchange(this)" oninput="convolve(this)"><br>D8</label></div>
+			<div class="num"><label><input type="number" min=0 max=6 step=1 placeholder=0 id="d6" onchange="playchange(this)" oninput="convolve(this)"><br>D6</label></div>
+			<div class="num"><label><input type="number" min=0 max=4 step=1 placeholder=0 id="d4" onchange="playchange(this)" oninput="convolve(this)"><br>D4</label></div>
+			<button onclick="roll()">Roll!</button>
+			<br>
+			<br>
+			<label><input type="radio" name="t" checked id="normal">Normal</label>
+			&nbsp;
+			&nbsp;
+			<label><input type="radio" name="t" id="advantage" oninput="adv()">Advantage</label>
+			&nbsp;
+			&nbsp;
+			<label><input type="radio" name="t" id="disadvantage" oninput="dis()">Disadvantage</label>
+			<br>
+			<br>
+		</fieldset>
+		<br>
+		<br><br>
+		<img id="cam" src="/stream.mjpg" title="camera stream...">
+
+		<script src="/howler.js"></script>
+		<script src="/jq.js"></script>
+		<script src="/clippy/build/clippy.min.js"></script>
+		<script src="/plotly.js"></script>
+		<script src="/main.js"></script>
+		</main>
+		<!-- <div id="mainbottom"></div> -->
+	</body>
+</html>
