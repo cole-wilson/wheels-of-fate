@@ -13,7 +13,7 @@ import websockets.exceptions
 import websockets.asyncio.server
 import asyncio
 import json
-import scipy
+# import scipy
 import socket
 
 REAL = socket.gethostname() == 'wheels-of-fate'
