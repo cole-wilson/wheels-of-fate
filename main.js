@@ -47,6 +47,10 @@ function load() {
 }
 
 ws = new WebSocket("ws://"+location.hostname+":9191")
+if (location.hostname != "localhost") {
+	ws = new WebSocket("wss://wof.ridgeback.cole.ws");
+
+}
 ws.onmessage = d => {
 	let probs = JSON.parse(d.data);
 

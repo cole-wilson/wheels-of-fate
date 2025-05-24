@@ -5,4 +5,4 @@ automatic dice roller for TTRPG games: including probability distributions and d
 
 6 servos for cartridges of dice
 
-[![video thumbnail](https://img.youtube.com/vi/REPLACE/0.jpg)](https://www.youtube.com/watch?v=REPLACE)
+[![video thumbnail](https://img.youtube.com/vi/4XhzMjS-vlc/0.jpg)](https://www.youtube.com/watch?v=4XhzMjS-vlc)

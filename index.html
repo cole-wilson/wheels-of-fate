@@ -38,6 +38,7 @@ main {
 	width: 300px;
 	min-height: 200px;
 	border: 1px solid grey;
+	color: white;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -167,7 +168,8 @@ see your distribution of odds, and hit the Roll button to watch your roll!
 		</fieldset>
 		<br>
 		<br><br>
-		<img id="cam" src="/stream.mjpg" title="camera stream...">
+		<!-- <img class="cam" src="/stream.mjpg" title="camera stream..."> -->
+		<div id="cam"><iframe style="height:100%;width:100%;" src="https://www.youtube-nocookie.com/embed/4XhzMjS-vlc?autoplay=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
 
 		<script src="/howler.js"></script>
 		<script src="/jq.js"></script>
